@@ -50,11 +50,11 @@ abstract class SnackishGradients {
     end: Alignment.bottomCenter,
   );
 
-  static const LinearGradient cardViewBackgroundGradient = LinearGradient(
+  static LinearGradient cardViewBackgroundGradient = LinearGradient(
     colors: [
-      Color.fromARGB(255, 255, 255, 255),
-      Color.fromARGB(255, 144, 140, 245),
-      Color.fromARGB(255, 140, 91, 234),
+      SnackishColors.transparentWhiteLow,
+      SnackishColors.solidGradientLightPurple,
+      SnackishColors.solidGradientPurple,
     ],
     stops: [0.07, 0.61, 1.0],
     begin: Alignment.topCenter,

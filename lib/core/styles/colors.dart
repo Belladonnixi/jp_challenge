@@ -5,6 +5,8 @@ abstract class SnackishColors {
   static const Color solidGradientBlue = Color.fromARGB(255, 67, 122, 151);
   static const Color solidDarkChocolate = Color.fromARGB(255, 47, 43, 34);
   static const Color solidGradientPink = Color.fromARGB(255, 233, 135, 150);
+  static const Color solidGradientLightPurple =
+      Color.fromARGB(255, 144, 140, 245);
   static const Color solidGradientPurple = Color.fromARGB(255, 140, 91, 234);
   static const Color solidCreamWhite = Color.fromARGB(255, 255, 255, 255);
   static const Color solidSoftPink = Color.fromARGB(255, 187, 141, 224);

@@ -55,12 +55,12 @@ abstract class SnackishGradients {
 
   static LinearGradient strokeGradient = LinearGradient(
     colors: [
-      SnackishColors.strokeWhite50,
-      SnackishColors.strokeDark50.withAlpha((0.1 * 255).toInt()),
-      SnackishColors.strokeDark50,
+      SnackishColors.solidGradientPink,
+      Colors.transparent,
+      SnackishColors.solidGradientPink,
     ],
-    stops: [0.0, 0.5, 1.0],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
+    stops: [0.0, 0.6, 1.0],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomLeft,
   );
 }

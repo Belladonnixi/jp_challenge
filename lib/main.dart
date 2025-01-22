@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         body: Center(
           child: GradientBtn(
-            text: "Order Now",
+            text: "Order Now Order Now Order Now",
             onPressed: () => print("Button pressed"),
             contentGradient: SnackishGradients.buttonOrderNowGradient,
             strokeGradient: SnackishGradients.strokeGradient,

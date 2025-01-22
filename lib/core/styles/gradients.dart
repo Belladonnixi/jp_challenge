@@ -2,33 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:jp_challenge/core/styles/colors.dart';
 
 abstract class SnackishGradients {
-  // **Hintergrund-Gradients**
-  static const LinearGradient backgroundGradient = LinearGradient(
-    colors: [
-      SnackishColors.solidGradientBlue,
-      SnackishColors.solidDarkChocolate,
-    ],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-  );
-
-  static const LinearGradient liquidElementGradient = LinearGradient(
-    colors: [
-      SnackishColors.solidGradientPink,
-      SnackishColors.solidGradientPurple,
-    ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
-
   // **Button-Gradients**
   static RadialGradient buttonOrderNowGradient = RadialGradient(
     colors: [
       SnackishColors.buttonGradientStart1,
       SnackishColors.buttonGradientEnd1,
     ],
-    center: Alignment.center,
-    radius: 0.8,
+    center: Alignment.bottomRight,
+    radius: 3,
   );
 
   static LinearGradient buttonAddToOrderGradient = LinearGradient(
@@ -65,18 +46,24 @@ abstract class SnackishGradients {
   static LinearGradient overlayGradient = LinearGradient(
     colors: [
       SnackishColors.overlayBlackLow,
-      SnackishColors.overlayWhiteMedium,
+      SnackishColors.transparentWhiteMedium,
     ],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
+    stops: [0.0, 1.0],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
   );
 
   static LinearGradient strokeGradient = LinearGradient(
     colors: [
-      SnackishColors.strokeDark50,
-      SnackishColors.strokeWhite50,
+      SnackishColors
+          .strokeWhite50 /* .withAlpha((0.2 * 255).toInt()) */, // Obere/untere dunklere Farbe
+      SnackishColors.strokeDark50
+          .withAlpha((0.1 * 255).toInt()), // Mittlere dunklere Farbe
+      SnackishColors.strokeDark50
+      /* .withAlpha((0.2 * 255).toInt()), // Obere/untere helle Farbe */
     ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
+    stops: [0.0, 0.5, 1.0],
+    begin: Alignment.topCenter, // Gradient beginnt oben
+    end: Alignment.bottomCenter, // Gradient endet unten
   );
 }

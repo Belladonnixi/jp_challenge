@@ -1,6 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:jp_challenge/core/styles/gradients.dart';
 
+/*
+ * GradientBtn
+ * 
+ * dieser Ansatz weil Elevated Buttons keine Gradients nehmen und hier dann folgend genauer erklärt.
+ *
+ * Ein vollständig anpassbarer Button mit:
+ * - **Gradient-Hintergrund**: Ein Farbverlauf, der über den gesamten Button gelegt wird.
+ * - **Stroke**: Ein optionaler Rahmen mit eigenem Farbverlauf.
+ * - **Shadows**: Anpassbare Schattenebenen, die unterhalb des Buttons gerendert werden.
+ * - **InkWell-Effekt**: Ripple-Effekt für visuelles Feedback bei der Interaktion.
+ *
+ * Aufbau:
+ * Der Button besteht aus folgenden Ebenen, die mit einem Stack verschachtelt sind:
+ * 1. Shadow Layer (optional):
+ *    - Eine Ebene, die die Schatten des Buttons rendert.
+ *    - Schatten können über die `shadows`-Eigenschaft angepasst oder deaktiviert werden.
+ * 2. Button Content:
+ *    - Hauptinhalt des Buttons, der den Hintergrund (Gradient), den Stroke und den Text enthält.
+ *    - Enthält ein Material-Widget für den InkWell-Ripple-Effekt.
+ * 3. Stroke Layer:
+ *    - Ein optionaler Rahmen mit einem Farbverlauf, der um den Button gezogen wird.
+ *    - Wird über eine ShaderMask realisiert, um den Farbverlauf passend zum Rahmen anzuwenden.
+ * 4. Text Layer:
+ *    - Der Textinhalt des Buttons, der mit einem Text-Widget gerendert wird.
+ *    - Text ist vollständig anpassbar (z. B. Farbe, Größe, Gewicht).
+ *
+ * Anpassungsoptionen:
+ * - `width` und `height`: Manuelle Größenanpassung des Buttons (optional).
+ * - `contentGradient`: Der Farbverlauf für den Button-Hintergrund.
+ * - `strokeGradient`: Der Farbverlauf für den Button-Rahmen.
+ * - `strokeWidth`: Breite des Rahmens.
+ * - `shadows`: Liste von BoxShadow, um die Schattenebenen zu definieren.
+ * - `padding`: Innenabstände des Buttons (Text vs. Rand).
+ *
+ * Verwendung:
+ * GradientBtn(
+ *   text: "Order Now",
+ *   onPressed: () {
+ *     print("Button pressed!");
+ *   },
+ *   width: 200,
+ *   height: 50,
+ *   contentGradient: LinearGradient(
+ *     colors: [Colors.blue, Colors.purple],
+ *   ),
+ *   strokeGradient: LinearGradient(
+ *     colors: [Colors.white, Colors.transparent],
+ *   ),
+ *   strokeWidth: 2.0,
+ *   shadows: [
+ *     BoxShadow(
+ *       color: Colors.black.withOpacity(0.2),
+ *       blurRadius: 10,
+ *       offset: Offset(0, 4),
+ *     ),
+ *   ],
+ * );
+ *
+ * Vorteile:
+ * - Modularer Aufbau: Jede Komponente (Shadow, Stroke, Text) ist separat anpassbar.
+ * - Dynamische Größe: Breite und Höhe passen sich automatisch an den Text an, falls nicht explizit gesetzt.
+ * - Wiederverwendbar: Ideal für Buttons mit modernem Design und interaktivem Feedback.
+ */
+
 class GradientBtn extends StatelessWidget {
   const GradientBtn({
     super.key,
@@ -83,8 +147,8 @@ class GradientBtn extends StatelessWidget {
         ),
         child: InkWell(
           onTap: onPressed, // Hier wird die Callback-Funktion ausgeführt.
-          borderRadius: BorderRadius.circular(
-              10), // Abgerundete Kanten für das Feedback (z. B. Splash).
+          borderRadius: BorderRadius.circular(10),
+          // Abgerundete Kanten für das Feedback hier riffle Effekt das man auch vom elevated Button kennt.
           splashColor: Colors.white
               .withAlpha((0.2 * 255).toInt()), // Farbe des Klick-Effekts.
           child: Stack(
@@ -164,3 +228,5 @@ class GradientBtn extends StatelessWidget {
     );
   }
 }
+
+/* text */

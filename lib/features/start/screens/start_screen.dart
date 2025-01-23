@@ -26,7 +26,7 @@ class StartScreen extends StatelessWidget {
                 height: 200,
                 width: 300,
                 child: OrderBtn(
-                  title: 'Order now',
+                  title: 'meins mein',
                   onPressed: () {},
                 ),
               ),

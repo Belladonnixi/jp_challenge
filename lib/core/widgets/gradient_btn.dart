@@ -228,5 +228,3 @@ class GradientBtn extends StatelessWidget {
     );
   }
 }
-
-/* text */

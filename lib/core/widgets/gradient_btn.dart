@@ -100,13 +100,12 @@ class GradientBtn extends StatelessWidget {
     final textPainter = TextPainter(
       text: TextSpan(text: text, style: textStyle),
       textDirection: TextDirection.ltr,
-    )..layout(); // Layout sorgt dafür, dass die Textgröße gemessen werden kann.
+      // Layout sorgt dafür, dass die Textgröße gemessen werden kann.
+    )..layout();
 
     final textWidth = textPainter.size.width; // Breite des Textes.
-    return width ??
-        textWidth +
-            (padding?.horizontal ??
-                40); // Berechnet die Gesamtdynamische Breite (Text + Padding).
+    // Berechnet die Gesamtdynamische Breite (Text + Padding).
+    return width ?? textWidth + (padding?.horizontal ?? 40);
   }
 
   // Erstellt die Schattenebene hinter dem Button.
@@ -147,10 +146,10 @@ class GradientBtn extends StatelessWidget {
         ),
         child: InkWell(
           onTap: onPressed, // Hier wird die Callback-Funktion ausgeführt.
-          borderRadius: BorderRadius.circular(10),
           // Abgerundete Kanten für das Feedback hier riffle Effekt das man auch vom elevated Button kennt.
-          splashColor: Colors.white
-              .withAlpha((0.2 * 255).toInt()), // Farbe des Klick-Effekts.
+          borderRadius: BorderRadius.circular(10),
+          // Farbe des tap Effekts.
+          splashColor: Colors.white.withAlpha((0.2 * 255).toInt()),
           child: Stack(
             alignment: Alignment.center,
             children: [

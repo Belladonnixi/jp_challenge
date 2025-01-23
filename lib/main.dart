@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:jp_challenge/core/styles/theme.dart';
 import 'package:jp_challenge/features/start/screens/start_screen.dart';
 
 void main() {
-  runApp(const MainApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((_) {
+    runApp(MainApp());
+  });
 }
 
 class MainApp extends StatelessWidget {
@@ -16,6 +22,8 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: buildTheme(),
       home: StartScreen(),
+      /*   initialRoute: '/',
+      onGenerateRoute: RouteGenerator.generateRoute, */
     );
   }
 }

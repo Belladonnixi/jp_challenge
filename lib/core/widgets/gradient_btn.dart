@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jp_challenge/core/styles/colors.dart';
 import 'package:jp_challenge/core/styles/gradients.dart';
 
 class GradientBtn extends StatelessWidget {
@@ -26,7 +25,7 @@ class GradientBtn extends StatelessWidget {
   final double? strokeWidth;
   final List<BoxShadow>? shadows;
 
-  // Berechnung der dynamischen Breite basierend auf Text
+  // Berechnet die dynamische Breite basierend auf dem Text und dem Padding.
   double _calculateWidth(BuildContext context, BoxConstraints constraints) {
     final textStyle = Theme.of(context).textTheme.labelLarge?.copyWith(
           color: Colors.white,
@@ -37,68 +36,63 @@ class GradientBtn extends StatelessWidget {
     final textPainter = TextPainter(
       text: TextSpan(text: text, style: textStyle),
       textDirection: TextDirection.ltr,
-    )..layout();
+    )..layout(); // Layout sorgt dafür, dass die Textgröße gemessen werden kann.
 
-    final textWidth = textPainter.size.width;
-    return width ?? textWidth + (padding?.horizontal ?? 40);
+    final textWidth = textPainter.size.width; // Breite des Textes.
+    return width ??
+        textWidth +
+            (padding?.horizontal ??
+                40); // Berechnet die Gesamtdynamische Breite (Text + Padding).
   }
 
-  // Schattenebene
-  Widget _buildShadowLayer(double width, double height) {
+  // Erstellt die Schattenebene hinter dem Button.
+  Widget? _buildShadowLayer(double width, double height) {
+    // Null-Check und Abfrage, ob die Liste leer ist.
+    if (shadows?.isEmpty ?? true) {
+      return null; // Gibt nichts zurück, wenn keine Schatten definiert sind.
+    }
+
     return Positioned(
       child: Container(
-        width: width,
-        height: height,
+        width: width, // Breite des Schattens.
+        height: height, // Höhe des Schattens.
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: shadows ??
-              [
-                BoxShadow(
-                  color:
-                      SnackishColors.shadowBerry.withAlpha((0.4 * 255).toInt()),
-                  blurRadius: 24,
-                  offset: const Offset(0, 5),
-                ),
-                BoxShadow(
-                  color:
-                      SnackishColors.shadowPink.withAlpha((0.3 * 255).toInt()),
-                  blurRadius: 15,
-                  offset: const Offset(0, 10),
-                ),
-                BoxShadow(
-                  color:
-                      SnackishColors.shadowCandy.withAlpha((0.2 * 255).toInt()),
-                  blurRadius: 90,
-                  offset: const Offset(0, 20),
-                ),
-              ],
+          borderRadius: BorderRadius.circular(10), // Abgerundete Ecken.
+          boxShadow: shadows, // Verwendet die definierten Schatten.
         ),
       ),
     );
   }
 
-  // Button-Inhalt mit InkWell
+  // Der Hauptinhalt des Buttons mit einem "InkWell" für die Klick-Aktion.
   Widget _buildButtonContent(
       BuildContext context, double width, double height) {
     return Material(
-      color: Colors.transparent,
-      borderRadius: BorderRadius.circular(10),
+      color: Colors
+          .transparent, // Der Hintergrund des Materials bleibt transparent.
+      borderRadius:
+          BorderRadius.circular(10), // Gleiche Ecken wie der Button selbst.
       child: Ink(
-        width: width,
-        height: height,
+        width: width, // Die Breite des Buttons.
+        height: height, // Die Höhe des Buttons.
         decoration: BoxDecoration(
-          gradient: contentGradient ?? SnackishGradients.buttonOrderNowGradient,
+          gradient: contentGradient ??
+              SnackishGradients
+                  .buttonOrderNowGradient, // Farbverlauf des Buttons.
           borderRadius: BorderRadius.circular(10),
         ),
         child: InkWell(
-          onTap: onPressed,
-          borderRadius: BorderRadius.circular(10),
-          splashColor: Colors.white.withAlpha((0.2 * 255).toInt()),
+          onTap: onPressed, // Hier wird die Callback-Funktion ausgeführt.
+          borderRadius: BorderRadius.circular(
+              10), // Abgerundete Kanten für das Feedback (z. B. Splash).
+          splashColor: Colors.white
+              .withAlpha((0.2 * 255).toInt()), // Farbe des Klick-Effekts.
           child: Stack(
             alignment: Alignment.center,
             children: [
-              _buildStrokeLayer(width, height),
-              _buildTextContent(context),
+              _buildStrokeLayer(
+                  width, height), // Zeichnet den Rand (Stroke) des Buttons.
+              _buildTextContent(context), // Zeigt den Button-Text an.
             ],
           ),
         ),
@@ -106,39 +100,43 @@ class GradientBtn extends StatelessWidget {
     );
   }
 
-  // Stroke mit ShaderMask
+  // Zeichnet den Rand (Stroke) des Buttons mit einer ShaderMask.
   Widget _buildStrokeLayer(double width, double height) {
     return Positioned.fill(
       child: ShaderMask(
         shaderCallback: (Rect bounds) {
-          return (strokeGradient ?? SnackishGradients.strokeGradient)
-              .createShader(bounds);
+          return (strokeGradient ??
+                  SnackishGradients.strokeGradient) // Farbverlauf des Strokes.
+              .createShader(
+                  bounds); // Erzeugt den Farbverlauf passend zur Größe des Buttons.
         },
-        blendMode: BlendMode.srcIn,
+        blendMode: BlendMode.srcIn, // Der Farbverlauf wird direkt angewendet.
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.white,
-              width: strokeWidth ?? 1.5,
+              color: Colors.white, // Standardfarbe des Strokes.
+              width: strokeWidth ?? 1.5, // Die Breite des Strokes.
             ),
-            borderRadius: BorderRadius.circular(10),
+            borderRadius:
+                BorderRadius.circular(10), // Abgerundete Ecken für den Rand.
           ),
         ),
       ),
     );
   }
 
-  // Textinhalt
+  // Baut den Textinhalt des Buttons.
   Widget _buildTextContent(BuildContext context) {
     return Padding(
-      padding:
-          padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: padding ??
+          const EdgeInsets.symmetric(
+              horizontal: 16, vertical: 12), // Standard-Padding für den Text.
       child: Text(
         text,
         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
+              color: Colors.white, // Weißer Text.
+              fontWeight: FontWeight.bold, // Fetter Text.
+              fontSize: 18, // Textgröße.
             ),
       ),
     );
@@ -148,13 +146,17 @@ class GradientBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
+        // Dynamische Breite und Höhe basierend auf den Textinhalten oder Standardwerten.
         final dynamicWidth = _calculateWidth(context, constraints);
         final dynamicHeight = height ?? 48.0;
 
         return Stack(
-          alignment: Alignment.center,
+          alignment: Alignment.center, // Zentriert den Button-Inhalt.
           children: [
-            if (shadows != null) _buildShadowLayer(dynamicWidth, dynamicHeight),
+            // Schattenebene nur einfügen, wenn sie nicht null ist.
+            if (_buildShadowLayer(dynamicWidth, dynamicHeight) != null)
+              _buildShadowLayer(dynamicWidth, dynamicHeight)!,
+            // Baut den Button-Inhalt.
             _buildButtonContent(context, dynamicWidth, dynamicHeight),
           ],
         );

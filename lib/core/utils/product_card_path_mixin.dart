@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ProductCardClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
+mixin ProductCardPathMixin {
+  Path createProductCardPath(Size size) {
+    final path = Path();
     path.moveTo(20, 0); // Start oben links (mit Rundung)
     path.lineTo(size.width - 20, 0); // Gerade obere Linie
     path.quadraticBezierTo(
@@ -17,10 +16,7 @@ class ProductCardClipper extends CustomClipper<Path> {
         0, size.height, 0, size.height - 20); // Unten links abgerundet
     path.lineTo(0, 20); // Linke lange Seite
     path.quadraticBezierTo(0, 0, 20, 0); // Oben links abgerundet
-    path.close();
+    path.close(); // Schließt den Pfad, damit er komplett ist
     return path;
   }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:jp_challenge/core/styles/colors.dart';
-import 'package:jp_challenge/features/home/widgets/product_card_clipper.dart';
-import 'package:jp_challenge/features/home/widgets/product_card_painter.dart';
+import 'package:jp_challenge/core/utils/product_card_clipper.dart';
+import 'package:jp_challenge/core/utils/product_card_painter.dart';
 
 class ProductGlassCard extends StatelessWidget {
   const ProductGlassCard({

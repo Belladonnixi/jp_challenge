@@ -9,7 +9,7 @@ abstract class SnackishGradients {
       SnackishColors.buttonGradientEnd1,
     ],
     center: Alignment.bottomRight,
-    radius: 1.5,
+    radius: 2.5,
   );
 
   static LinearGradient buttonAddToOrderGradient = LinearGradient(
@@ -55,9 +55,9 @@ abstract class SnackishGradients {
 
   static LinearGradient strokeGradient = LinearGradient(
     colors: [
-      SnackishColors.solidGradientPink,
+      SnackishColors.solidCreamWhite.withAlpha((0.2 * 255).toInt()),
       Colors.transparent,
-      SnackishColors.solidGradientPink,
+      SnackishColors.buttonGradientEnd1,
     ],
     stops: [0.0, 0.6, 1.0],
     begin: Alignment.topLeft,

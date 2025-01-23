@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:jp_challenge/core/styles/colors.dart';
 import 'package:jp_challenge/core/styles/gradients.dart';
@@ -41,36 +40,36 @@ class GradientBtn extends StatelessWidget {
     )..layout();
 
     final textWidth = textPainter.size.width;
-    return width ?? textWidth + (padding?.horizontal ?? 32);
+    return width ?? textWidth + (padding?.horizontal ?? 40);
   }
 
   // Schattenebene
   Widget _buildShadowLayer(double width, double height) {
-    return Positioned.fill(
+    return Positioned(
       child: Container(
         width: width,
         height: height,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
           boxShadow: shadows ??
               [
                 BoxShadow(
                   color:
-                      SnackishColors.shadowBerry.withAlpha((0.8 * 255).toInt()),
+                      SnackishColors.shadowBerry.withAlpha((0.4 * 255).toInt()),
                   blurRadius: 24,
-                  offset: const Offset(0, -3),
+                  offset: const Offset(0, 5),
                 ),
                 BoxShadow(
                   color:
-                      SnackishColors.shadowPink.withAlpha((0.7 * 255).toInt()),
+                      SnackishColors.shadowPink.withAlpha((0.3 * 255).toInt()),
                   blurRadius: 15,
-                  offset: Offset.zero,
+                  offset: const Offset(0, 10),
                 ),
                 BoxShadow(
                   color:
-                      SnackishColors.shadowCandy.withAlpha((0.6 * 255).toInt()),
+                      SnackishColors.shadowCandy.withAlpha((0.2 * 255).toInt()),
                   blurRadius: 90,
-                  offset: const Offset(0, 30),
+                  offset: const Offset(0, 20),
                 ),
               ],
         ),
@@ -83,43 +82,24 @@ class GradientBtn extends StatelessWidget {
       BuildContext context, double width, double height) {
     return Material(
       color: Colors.transparent,
-      borderRadius: BorderRadius.circular(15),
+      borderRadius: BorderRadius.circular(10),
       child: Ink(
         width: width,
         height: height,
         decoration: BoxDecoration(
           gradient: contentGradient ?? SnackishGradients.buttonOrderNowGradient,
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: InkWell(
           onTap: onPressed,
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
           splashColor: Colors.white.withAlpha((0.2 * 255).toInt()),
           child: Stack(
             alignment: Alignment.center,
             children: [
-              _buildOverlayLayer(),
               _buildStrokeLayer(width, height),
               _buildTextContent(context),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  // Overlay mit Blur
-  Widget _buildOverlayLayer() {
-    return Positioned.fill(
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: SnackishGradients.overlayGradient,
-              borderRadius: BorderRadius.circular(15),
-            ),
           ),
         ),
       ),
@@ -141,7 +121,7 @@ class GradientBtn extends StatelessWidget {
               color: Colors.white,
               width: strokeWidth ?? 1.5,
             ),
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(10),
           ),
         ),
       ),
@@ -169,7 +149,7 @@ class GradientBtn extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final dynamicWidth = _calculateWidth(context, constraints);
-        final dynamicHeight = height ?? 60;
+        final dynamicHeight = height ?? 48.0;
 
         return Stack(
           alignment: Alignment.center,

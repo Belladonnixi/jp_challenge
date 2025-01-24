@@ -77,6 +77,7 @@ class GradientBtn extends StatelessWidget {
     this.strokeGradient,
     this.strokeWidth,
     this.shadows,
+    this.overlayGradient,
   });
 
   final String text;
@@ -86,6 +87,7 @@ class GradientBtn extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final Gradient? contentGradient;
   final Gradient? strokeGradient;
+  final Gradient? overlayGradient;
   final double? strokeWidth;
   final List<BoxShadow>? shadows;
 
@@ -127,6 +129,24 @@ class GradientBtn extends StatelessWidget {
     );
   }
 
+  // Funktion zum Erstellen der Overlay-Gradient-Schicht
+  Widget? _buildOverlayLayer(double width, double height) {
+    if (overlayGradient == null) {
+      return null; // Falls kein Overlay-Gradient definiert ist, nichts hinzufügen
+    }
+
+    return Positioned.fill(
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          gradient: overlayGradient, // Der zusätzliche Farbverlauf
+          borderRadius: BorderRadius.circular(10), // Abgerundete Ecken
+        ),
+      ),
+    );
+  }
+
   // Der Hauptinhalt des Buttons mit einem "InkWell" für die Klick-Aktion.
   Widget _buildButtonContent(
       BuildContext context, double width, double height) {
@@ -153,6 +173,8 @@ class GradientBtn extends StatelessWidget {
           child: Stack(
             alignment: Alignment.center,
             children: [
+              if (_buildOverlayLayer(width, height) != null)
+                _buildOverlayLayer(width, height)!,
               _buildStrokeLayer(
                   width, height), // Zeichnet den Rand (Stroke) des Buttons.
               _buildTextContent(context), // Zeigt den Button-Text an.

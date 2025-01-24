@@ -8,10 +8,12 @@ class OrderBtn extends StatelessWidget {
     super.key,
     required this.title,
     required this.onPressed,
+    this.padding = const EdgeInsets.symmetric(horizontal: 32),
   });
 
   final String title;
   final VoidCallback onPressed;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class OrderBtn extends StatelessWidget {
       text: title,
       onPressed: onPressed,
       height: 48,
-      padding: const EdgeInsets.symmetric(horizontal: 64),
+      padding: padding,
       contentGradient: SnackishGradients.buttonOrderNowGradient,
       strokeGradient: SnackishGradients.strokeGradient,
       strokeWidth: 1.5,

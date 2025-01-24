@@ -9,10 +9,10 @@ class ProductCardPainter extends CustomPainter with ProductCardPathMixin {
     final paint = Paint()
       // die zwei Punkte (..) sind sogenannte "cascading operators", die es erlauben, mehrere Eigenschaften auf einmal zu setzen.
       // man könnte stattdessen auch paint.color = ... schreiben.
-      ..color = SnackishColors.solidCreamWhite.withAlpha((0.03 * 255).toInt())
+      ..color = SnackishColors.solidCreamWhite.withAlpha((0.3 * 255).toInt())
       // Der Stil ist "Stroke", damit nur der Rand gezeichnet wird.
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 3; // Die Breite des Randes wird auf 3 Pixel gesetzt.
+      ..strokeWidth = 1.5; // Die Breite des Randes wird auf 3 Pixel gesetzt.
 
     final path = createProductCardPath(size);
     canvas.drawPath(path, paint);

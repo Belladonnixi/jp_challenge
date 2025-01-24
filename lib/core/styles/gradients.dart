@@ -38,7 +38,7 @@ abstract class SnackishGradients {
       SnackishColors.solidGradientPurple,
     ],
     stops: [0.07, 0.61, 1.0],
-    begin: Alignment.topCenter,
+    begin: Alignment(0.0, -1.3),
     end: Alignment.bottomCenter,
   );
 

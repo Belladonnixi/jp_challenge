@@ -1,9 +1,11 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:jp_challenge/core/styles/colors.dart';
+import 'package:jp_challenge/core/styles/gradients.dart';
 
-class GlassCard extends StatelessWidget {
-  const GlassCard({
+class RecommendCard extends StatelessWidget {
+  const RecommendCard({
     super.key,
     required this.child,
     this.padding = const EdgeInsets.all(16.0),
@@ -27,8 +29,7 @@ class GlassCard extends StatelessWidget {
           width: width,
           padding: padding,
           decoration: BoxDecoration(
-            color:
-                SnackishColors.solidCreamWhite.withAlpha((0.01 * 255).toInt()),
+            gradient: SnackishGradients.cardViewBackgroundGradient,
             borderRadius: BorderRadius.circular(20.0),
             border: Border.all(
               color:

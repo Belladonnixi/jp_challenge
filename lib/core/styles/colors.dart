@@ -3,7 +3,7 @@ import 'dart:ui';
 abstract class SnackishColors {
   // **Grundfarben (Solid Colors)**
   static const Color solidGradientBlue = Color(0xFF437A97);
-  static const Color solidDarkChocolate = Color(0x0FF2FB22);
+  static const Color solidDarkChocolate = Color(0xFF2F2B22);
   static const Color solidGradientPink = Color(0xFFE98796);
   static const Color solidGradientLightPurple = Color(0xFF908CF5);
   static const Color solidGradientPurple = Color(0xFF8C5BEA);

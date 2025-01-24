@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.14.3
+  flutter_native_splash: ^2.4.4
   flutter_svg: ^2.0.17
 
 
@@ -26,4 +28,18 @@ flutter:
     - assets/backgrounds/
     - assets/icons/
     - assets/images/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/icon/miao_miao_precise_filled_1024x1024.png"
+
+flutter_native_splash:
+  color: "#2F2B22"
+  image: assets/images/cupcake_1.png
+  android_12:
+    image: assets/images/cupcake_1.png
+    color: "#2F2B22"
+    icon_background_color: "#9363F4"
 

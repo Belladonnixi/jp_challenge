@@ -9,7 +9,7 @@ abstract class SnackishGradients {
       SnackishColors.buttonGradientEnd1,
     ],
     center: Alignment.bottomRight,
-    radius: 2.5,
+    radius: 3.5,
   );
 
   static LinearGradient buttonAddToOrderGradient = LinearGradient(

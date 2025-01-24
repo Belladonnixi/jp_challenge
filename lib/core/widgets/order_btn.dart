@@ -24,6 +24,7 @@ class OrderBtn extends StatelessWidget {
       padding: padding,
       contentGradient: SnackishGradients.buttonOrderNowGradient,
       strokeGradient: SnackishGradients.strokeGradient,
+      overlayGradient: SnackishGradients.overlayGradient,
       strokeWidth: 1.5,
       shadows: [
         BoxShadow(

@@ -7,7 +7,7 @@ mixin ProductCardPathMixin {
     path.lineTo(size.width - 30, 0); // Gerade obere Linie
     path.quadraticBezierTo(
         size.width, 0, size.width, 25); // Oben rechts abgerundet
-    path.lineTo(size.width, size.height - 69); // Rechte kürzere Seite
+    path.lineTo(size.width, size.height - 68); // Rechte kürzere Seite
     // Unten rechts abgerundet
     path.quadraticBezierTo(
         size.width, size.height - 40, size.width - 20, size.height - 35);

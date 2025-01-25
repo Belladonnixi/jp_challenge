@@ -98,15 +98,17 @@ class ProductCard extends StatelessWidget {
               const Spacer(),
               // Button
               AddToOrderBtn(
-                  title: Text(
-                    'Add to Order',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
+                title: Text(
+                  'Add to order',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: -0.5,
                   ),
-                  onPressed: () {}),
+                ),
+                onPressed: onAddToOrder,
+              ),
               const SizedBox(height: 8),
             ],
           ),
@@ -115,8 +117,8 @@ class ProductCard extends StatelessWidget {
           top: -115,
           right: -3,
           child: SizedBox(
-            width: 200,
-            height: 560,
+            width: 190,
+            height: 570,
             child: image,
           ),
         ),

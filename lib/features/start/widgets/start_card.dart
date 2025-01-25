@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jp_challenge/core/styles/colors.dart';
 import 'package:jp_challenge/core/widgets/order_btn.dart';
 import 'package:jp_challenge/core/widgets/glass_card.dart';
 
@@ -39,9 +40,16 @@ class StartCard extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           OrderBtn(
-            title: Text('Order Now'),
+            title: Text(
+              'Order Now',
+              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: SnackishColors.solidCreamWhite,
+                  ),
+            ),
             padding: const EdgeInsets.symmetric(horizontal: 48),
-            onPressed: () {},
+            onPressed: onPressed,
           ),
         ],
       ),

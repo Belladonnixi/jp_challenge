@@ -21,7 +21,7 @@ abstract class SnackishColors {
   // **Buttonfarben (Radial Gradient Stops)**
   static const Color buttonGradientStart1 = Color(0xFFF69AA3);
   static const Color buttonGradientEnd1 = Color(0xFFE970C4);
-  static const Color buttonGradientStart2 = Color(0xFFE98796);
+  static const Color buttonGradientStart2 = Color(0xFFBB8DE1);
   static const Color buttonGradientEnd2 = Color(0xFF8C5BEA);
 
   // **Stroke-Farben (mit withAlpha)**

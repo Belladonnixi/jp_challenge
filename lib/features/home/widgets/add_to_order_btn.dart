@@ -20,11 +20,19 @@ class AddToOrderBtn extends StatelessWidget {
     return GradientBtn(
       title: title,
       onPressed: onPressed,
-      height: 35,
+      height: 38,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       contentGradient: SnackishGradients.buttonAddToOrderGradient,
       strokeGradient: SnackishGradients.strokeGradient,
-      overlayGradient: SnackishGradients.overlayGradient,
+      overlayGradient: LinearGradient(
+        colors: [
+          Colors.white.withAlpha(
+              (0.1 * 255).toInt()), // Intensiver Schimmer in der Mitte
+          Colors.white.withAlpha((0.01 * 255).toInt()) // Übergang ins Nichts
+        ],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      ),
       strokeWidth: 1.5,
       shadows: [
         BoxShadow(

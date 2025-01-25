@@ -14,11 +14,11 @@ abstract class SnackishGradients {
 
   static RadialGradient buttonAddToOrderGradient = RadialGradient(
     colors: [
-      SnackishColors.buttonGradientStart2,
+      SnackishColors.buttonGradientStart2 /* .withAlpha((0.5 * 255).toInt()) */,
       SnackishColors.buttonGradientEnd2,
     ],
-    center: Alignment.topLeft,
-    radius: 1.0,
+    center: Alignment.centerLeft,
+    radius: 2.5,
   );
 
   // **Card View Gradients**
@@ -55,7 +55,7 @@ abstract class SnackishGradients {
 
   static LinearGradient strokeGradient = LinearGradient(
     colors: [
-      SnackishColors.solidCreamWhite.withAlpha((0.3 * 255).toInt()),
+      SnackishColors.solidCreamWhite.withAlpha((0.4 * 255).toInt()),
       Colors.transparent,
       SnackishColors.buttonGradientEnd1,
     ],

@@ -4,40 +4,48 @@ import 'package:jp_challenge/core/styles/gradients.dart';
 /*
  * GradientBtn
  * 
- * dieser Ansatz weil Elevated Buttons keine Gradients nehmen und hier dann folgend genauer erklärt.
+ * dieser Ansatz, weil ElevatedButtons keine Gradients unterstützen und hier mehr Flexibilität benötigt wird.
  *
- * Ein vollständig anpassbarer Button mit:
- * - **Gradient-Hintergrund**: Ein Farbverlauf, der über den gesamten Button gelegt wird.
- * - **Stroke**: Ein optionaler Rahmen mit eigenem Farbverlauf.
- * - **Shadows**: Anpassbare Schattenebenen, die unterhalb des Buttons gerendert werden.
- * - **InkWell-Effekt**: Ripple-Effekt für visuelles Feedback bei der Interaktion.
+ * Ein anpassbarer Button mit:
+ * - **Gradient-Hintergrund**: Farbverlauf über den gesamten Button.
+ * - **Stroke**: Optionaler Rahmen mit eigenem Farbverlauf.
+ * - **Shadows**: Anpassbare Schatten, die unterhalb des Buttons gerendert werden.
+ * - **InkWell-Effekt**: Ripple-Effekt für visuelles Feedback bei Interaktion.
  *
  * Aufbau:
- * Der Button besteht aus folgenden Ebenen, die mit einem Stack verschachtelt sind:
- * 1. Shadow Layer (optional):
- *    - Eine Ebene, die die Schatten des Buttons rendert.
- *    - Schatten können über die `shadows`-Eigenschaft angepasst oder deaktiviert werden.
- * 2. Button Content:
- *    - Hauptinhalt des Buttons, der den Hintergrund (Gradient), den Stroke und den Text enthält.
- *    - Enthält ein Material-Widget für den InkWell-Ripple-Effekt.
- * 3. Stroke Layer:
- *    - Ein optionaler Rahmen mit einem Farbverlauf, der um den Button gezogen wird.
- *    - Wird über eine ShaderMask realisiert, um den Farbverlauf passend zum Rahmen anzuwenden.
- * 4. Text Layer:
- *    - Der Textinhalt des Buttons, der mit einem Text-Widget gerendert wird.
- *    - Text ist vollständig anpassbar (z. B. Farbe, Größe, Gewicht).
+ * Der Button wird über einen Stack organisiert und besteht aus:
+ * 1. **Shadow Layer (optional)**:
+ *    - Rendert die Schatten des Buttons.
+ *    - Kann über die `shadows`-Eigenschaft angepasst oder deaktiviert werden.
+ * 2. **Button Content**:
+ *    - Enthält den Farbverlauf (Gradient), den Stroke und den Titel.
+ *    - Material-Widget sorgt für den InkWell-Ripple-Effekt.
+ * 3. **Stroke Layer**:
+ *    - Optionaler Rahmen mit Farbverlauf.
+ *    - Über eine ShaderMask wird der Farbverlauf präzise auf den Rahmen angewendet.
+ * 4. **Title Layer**:
+ *    - Der Button-Titel ist ein Widget (z. B. Text), das frei anpassbar ist.
+ *    - Wird zentriert und skaliert, um Umbrüche zu verhindern.
  *
  * Anpassungsoptionen:
- * - `width` und `height`: Manuelle Größenanpassung des Buttons (optional).
- * - `contentGradient`: Der Farbverlauf für den Button-Hintergrund.
- * - `strokeGradient`: Der Farbverlauf für den Button-Rahmen.
+ * - `width` und `height`: Manuelle Steuerung der Button-Größe (optional).
+ * - `contentGradient`: Farbverlauf für den Button-Hintergrund.
+ * - `strokeGradient`: Farbverlauf für den Button-Rahmen.
  * - `strokeWidth`: Breite des Rahmens.
- * - `shadows`: Liste von BoxShadow, um die Schattenebenen zu definieren.
- * - `padding`: Innenabstände des Buttons (Text vs. Rand).
+ * - `shadows`: Schatten des Buttons.
+ * - `padding`: Innenabstände zwischen Button-Rand und Titel.
+ * - `title`: Widget für den Button-Titel (z. B. Text mit Stiloptionen).
  *
  * Verwendung:
  * GradientBtn(
- *   text: "Order Now",
+ *   title: Text(
+ *     "Order Now",
+ *     style: TextStyle(
+ *       fontSize: 16,
+ *       fontWeight: FontWeight.bold,
+ *       color: Colors.white,
+ *     ),
+ *   ),
  *   onPressed: () {
  *     print("Button pressed!");
  *   },
@@ -60,9 +68,9 @@ import 'package:jp_challenge/core/styles/gradients.dart';
  * );
  *
  * Vorteile:
- * - Modularer Aufbau: Jede Komponente (Shadow, Stroke, Text) ist separat anpassbar.
- * - Dynamische Größe: Breite und Höhe passen sich automatisch an den Text an, falls nicht explizit gesetzt.
- * - Wiederverwendbar: Ideal für Buttons mit modernem Design und interaktivem Feedback.
+ * - **Flexibilität**: Alle Komponenten (Shadow, Stroke, Titel) können individuell angepasst werden.
+ * - **Responsive Design**: Der Button passt sich dynamisch an den Inhalt an, wenn keine feste Breite gesetzt ist.
+ * - **Modulares Konzept**: Kann leicht für verschiedene Anforderungen erweitert werden.
  */
 
 class GradientBtn extends StatelessWidget {
@@ -92,8 +100,12 @@ class GradientBtn extends StatelessWidget {
   final List<BoxShadow>? shadows;
 
   // Berechnet die dynamische Breite basierend auf dem Titel und dem Padding.
-  double _calculateWidth(BuildContext context) {
-    // Überprüfen, ob `title` ein Text-Widget ist und Daten enthält.
+  double _calculateWidth(BuildContext context, BoxConstraints constraints) {
+    if (width != null) {
+      return width!;
+    }
+
+    // Prüfen, ob der Titel ein Text-Widget ist, um die Breite basierend auf dem Text zu berechnen
     if (title is Text && (title as Text).data != null) {
       final textPainter = TextPainter(
         text: TextSpan(
@@ -108,29 +120,30 @@ class GradientBtn extends StatelessWidget {
         textDirection: TextDirection.ltr,
       )..layout();
 
-      final contentWidth = textPainter.size.width; // Breite des Textinhalts.
-      // Hinzufügen von Padding (Standardwert oder benutzerdefiniert).
-      return width ?? contentWidth + (padding?.horizontal ?? 40);
+      final contentWidth = textPainter.size.width;
+      final paddingWidth = (padding?.horizontal ?? 40);
+
+      // Gesamte Breite (Text-Inhalt + Padding)
+      return contentWidth + paddingWidth;
     }
 
-    // Fallback: Wenn `title` kein Text-Widget ist, eine Standardbreite verwenden.
-    return width ?? 100.0; // Standardbreite als Fallback.
+    // Standardbreite, wenn kein Text-Widget verwendet wird
+    return constraints.maxWidth * 0.5; // 50% der verfügbaren Breite
   }
 
   // Erstellt die Schattenebene hinter dem Button.
   Widget? _buildShadowLayer(double width, double height) {
-    // Null-Check und Abfrage, ob die Liste leer ist.
     if (shadows?.isEmpty ?? true) {
-      return null; // Gibt nichts zurück, wenn keine Schatten definiert sind.
+      return null; // Keine Schatten definiert
     }
 
     return Positioned(
       child: Container(
-        width: width, // Breite des Schattens.
-        height: height, // Höhe des Schattens.
+        width: width,
+        height: height,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10), // Abgerundete Ecken.
-          boxShadow: shadows, // Verwendet die definierten Schatten.
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: shadows,
         ),
       ),
     );
@@ -139,7 +152,7 @@ class GradientBtn extends StatelessWidget {
   // Funktion zum Erstellen der Overlay-Gradient-Schicht
   Widget? _buildOverlayLayer(double width, double height) {
     if (overlayGradient == null) {
-      return null; // Falls kein Overlay-Gradient definiert ist, nichts hinzufügen
+      return null; // Kein Overlay definiert
     }
 
     return Positioned.fill(
@@ -147,8 +160,8 @@ class GradientBtn extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          gradient: overlayGradient, // Der zusätzliche Farbverlauf
-          borderRadius: BorderRadius.circular(10), // Abgerundete Ecken
+          gradient: overlayGradient,
+          borderRadius: BorderRadius.circular(10),
         ),
       ),
     );
@@ -158,32 +171,33 @@ class GradientBtn extends StatelessWidget {
   Widget _buildButtonContent(
       BuildContext context, double width, double height) {
     return Material(
-      color: Colors
-          .transparent, // Der Hintergrund des Materials bleibt transparent.
-      borderRadius:
-          BorderRadius.circular(10), // Gleiche Ecken wie der Button selbst.
+      color: Colors.transparent,
+      borderRadius: BorderRadius.circular(10),
       child: Ink(
-        width: width, // Die Breite des Buttons.
-        height: height, // Die Höhe des Buttons.
+        width: width,
+        height: height,
         decoration: BoxDecoration(
-          gradient: contentGradient ??
-              SnackishGradients
-                  .buttonOrderNowGradient, // Farbverlauf des Buttons.
+          gradient: contentGradient ?? SnackishGradients.buttonOrderNowGradient,
           borderRadius: BorderRadius.circular(10),
         ),
         child: InkWell(
-          onTap: onPressed, // Hier wird die Callback-Funktion ausgeführt.
-          // Abgerundete Kanten für das Feedback hier riffle Effekt das man auch vom elevated Button kennt.
+          onTap: onPressed,
           borderRadius: BorderRadius.circular(10),
-          // Farbe des tap Effekts.
           splashColor: Colors.white.withAlpha((0.2 * 255).toInt()),
           child: Stack(
             alignment: Alignment.center,
             children: [
               if (_buildOverlayLayer(width, height) != null)
                 _buildOverlayLayer(width, height)!,
-              _buildStrokeLayer(
-                  width, height), // Zeichnet den Rand (Stroke) des Buttons.
+              _buildStrokeLayer(width, height),
+              Padding(
+                padding: padding ??
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown, // Verhindert, dass der Text umbricht
+                  child: title,
+                ),
+              ),
             ],
           ),
         ),
@@ -196,20 +210,17 @@ class GradientBtn extends StatelessWidget {
     return Positioned.fill(
       child: ShaderMask(
         shaderCallback: (Rect bounds) {
-          return (strokeGradient ??
-                  SnackishGradients.strokeGradient) // Farbverlauf des Strokes.
-              .createShader(
-                  bounds); // Erzeugt den Farbverlauf passend zur Größe des Buttons.
+          return (strokeGradient ?? SnackishGradients.strokeGradient)
+              .createShader(bounds);
         },
-        blendMode: BlendMode.srcIn, // Der Farbverlauf wird direkt angewendet.
+        blendMode: BlendMode.srcIn,
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.white, // Standardfarbe des Strokes.
-              width: strokeWidth ?? 1.5, // Die Breite des Strokes.
+              color: Colors.white,
+              width: strokeWidth ?? 1.5,
             ),
-            borderRadius:
-                BorderRadius.circular(10), // Abgerundete Ecken für den Rand.
+            borderRadius: BorderRadius.circular(10),
           ),
         ),
       ),
@@ -220,22 +231,15 @@ class GradientBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        // Dynamische Breite und Höhe basierend auf den Textinhalten oder Standardwerten.
-        final dynamicWidth = _calculateWidth(context);
+        final dynamicWidth = _calculateWidth(context, constraints);
         final dynamicHeight = height ?? 48.0;
 
         return Stack(
-          alignment: Alignment.center, // Zentriert den Button-Inhalt.
+          alignment: Alignment.center,
           children: [
-            // Schattenebene nur einfügen, wenn sie nicht null ist.
             if (_buildShadowLayer(dynamicWidth, dynamicHeight) != null)
               _buildShadowLayer(dynamicWidth, dynamicHeight)!,
-            // Baut den Button-Inhalt.
             _buildButtonContent(context, dynamicWidth, dynamicHeight),
-            Positioned(
-              top: 8,
-              child: title,
-            ),
           ],
         );
       },

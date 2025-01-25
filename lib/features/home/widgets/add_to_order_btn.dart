@@ -3,12 +3,12 @@ import 'package:jp_challenge/core/styles/colors.dart';
 import 'package:jp_challenge/core/styles/gradients.dart';
 import 'package:jp_challenge/core/widgets/gradient_btn.dart';
 
-class OrderBtn extends StatelessWidget {
-  const OrderBtn({
+class AddToOrderBtn extends StatelessWidget {
+  const AddToOrderBtn({
     super.key,
     required this.title,
     required this.onPressed,
-    this.padding = const EdgeInsets.symmetric(horizontal: 32),
+    this.padding,
   });
 
   final Widget title;
@@ -20,9 +20,9 @@ class OrderBtn extends StatelessWidget {
     return GradientBtn(
       title: title,
       onPressed: onPressed,
-      height: 48,
-      padding: padding,
-      contentGradient: SnackishGradients.buttonOrderNowGradient,
+      height: 35,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      contentGradient: SnackishGradients.buttonAddToOrderGradient,
       strokeGradient: SnackishGradients.strokeGradient,
       overlayGradient: SnackishGradients.overlayGradient,
       strokeWidth: 1.5,

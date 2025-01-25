@@ -12,13 +12,13 @@ abstract class SnackishGradients {
     radius: 3.5,
   );
 
-  static LinearGradient buttonAddToOrderGradient = LinearGradient(
+  static RadialGradient buttonAddToOrderGradient = RadialGradient(
     colors: [
       SnackishColors.buttonGradientStart2,
       SnackishColors.buttonGradientEnd2,
     ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
+    center: Alignment.topLeft,
+    radius: 1.0,
   );
 
   // **Card View Gradients**

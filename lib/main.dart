@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:jp_challenge/core/styles/theme.dart';
-import 'package:jp_challenge/features/start/screens/start_screen.dart';
+import 'package:jp_challenge/features/home/screens/home_screen.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +26,7 @@ class MainApp extends StatelessWidget {
       title: 'Miao Miao',
       debugShowCheckedModeBanner: false,
       theme: buildTheme(),
-      home: StartScreen(),
+      home: HomeScreen(),
       /*   initialRoute: '/',
       onGenerateRoute: RouteGenerator.generateRoute, */
     );

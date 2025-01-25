@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jp_challenge/core/widgets/order_btn.dart';
-import 'package:jp_challenge/features/start/widgets/glass_card.dart';
+import 'package:jp_challenge/core/widgets/glass_card.dart';
 
 class StartCard extends StatelessWidget {
   const StartCard({
@@ -39,7 +39,7 @@ class StartCard extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           OrderBtn(
-            title: 'Order Now',
+            title: Text('Order Now'),
             padding: const EdgeInsets.symmetric(horizontal: 48),
             onPressed: () {},
           ),

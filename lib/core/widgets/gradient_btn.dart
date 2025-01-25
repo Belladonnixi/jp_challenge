@@ -68,7 +68,7 @@ import 'package:jp_challenge/core/styles/gradients.dart';
 class GradientBtn extends StatelessWidget {
   const GradientBtn({
     super.key,
-    required this.text,
+    required this.title,
     required this.onPressed,
     this.width,
     this.height,
@@ -80,7 +80,7 @@ class GradientBtn extends StatelessWidget {
     this.overlayGradient,
   });
 
-  final String text;
+  final Widget title;
   final VoidCallback onPressed;
   final double? width;
   final double? height;
@@ -91,23 +91,30 @@ class GradientBtn extends StatelessWidget {
   final double? strokeWidth;
   final List<BoxShadow>? shadows;
 
-  // Berechnet die dynamische Breite basierend auf dem Text und dem Padding.
-  double _calculateWidth(BuildContext context, BoxConstraints constraints) {
-    final textStyle = Theme.of(context).textTheme.labelLarge?.copyWith(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-        );
+  // Berechnet die dynamische Breite basierend auf dem Titel und dem Padding.
+  double _calculateWidth(BuildContext context) {
+    // Überprüfen, ob `title` ein Text-Widget ist und Daten enthält.
+    if (title is Text && (title as Text).data != null) {
+      final textPainter = TextPainter(
+        text: TextSpan(
+          text: (title as Text).data,
+          style: (title as Text).style ??
+              Theme.of(context).textTheme.labelLarge?.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+        ),
+        textDirection: TextDirection.ltr,
+      )..layout();
 
-    final textPainter = TextPainter(
-      text: TextSpan(text: text, style: textStyle),
-      textDirection: TextDirection.ltr,
-      // Layout sorgt dafür, dass die Textgröße gemessen werden kann.
-    )..layout();
+      final contentWidth = textPainter.size.width; // Breite des Textinhalts.
+      // Hinzufügen von Padding (Standardwert oder benutzerdefiniert).
+      return width ?? contentWidth + (padding?.horizontal ?? 40);
+    }
 
-    final textWidth = textPainter.size.width; // Breite des Textes.
-    // Berechnet die Gesamtdynamische Breite (Text + Padding).
-    return width ?? textWidth + (padding?.horizontal ?? 40);
+    // Fallback: Wenn `title` kein Text-Widget ist, eine Standardbreite verwenden.
+    return width ?? 100.0; // Standardbreite als Fallback.
   }
 
   // Erstellt die Schattenebene hinter dem Button.
@@ -177,7 +184,6 @@ class GradientBtn extends StatelessWidget {
                 _buildOverlayLayer(width, height)!,
               _buildStrokeLayer(
                   width, height), // Zeichnet den Rand (Stroke) des Buttons.
-              _buildTextContent(context), // Zeigt den Button-Text an.
             ],
           ),
         ),
@@ -210,29 +216,12 @@ class GradientBtn extends StatelessWidget {
     );
   }
 
-  // Baut den Textinhalt des Buttons.
-  Widget _buildTextContent(BuildContext context) {
-    return Padding(
-      padding: padding ??
-          const EdgeInsets.symmetric(
-              horizontal: 16, vertical: 12), // Standard-Padding für den Text.
-      child: Text(
-        text,
-        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-              color: Colors.white, // Weißer Text.
-              fontWeight: FontWeight.bold, // Fetter Text.
-              fontSize: 18, // Textgröße.
-            ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         // Dynamische Breite und Höhe basierend auf den Textinhalten oder Standardwerten.
-        final dynamicWidth = _calculateWidth(context, constraints);
+        final dynamicWidth = _calculateWidth(context);
         final dynamicHeight = height ?? 48.0;
 
         return Stack(
@@ -243,6 +232,10 @@ class GradientBtn extends StatelessWidget {
               _buildShadowLayer(dynamicWidth, dynamicHeight)!,
             // Baut den Button-Inhalt.
             _buildButtonContent(context, dynamicWidth, dynamicHeight),
+            Positioned(
+              top: 8,
+              child: title,
+            ),
           ],
         );
       },

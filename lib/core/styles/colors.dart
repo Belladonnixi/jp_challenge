@@ -26,7 +26,8 @@ abstract class SnackishColors {
 
   // **Stroke-Farben (mit withAlpha)**
   static Color strokeWhite50 = solidCreamWhite.withAlpha((0.5 * 255).toInt());
-  static Color strokeDark50 = Color(0xFF000000).withAlpha((0.5 * 255).toInt());
+  static Color strokeDark50 =
+      const Color(0xFF000000).withAlpha((0.5 * 255).toInt());
 
   // **Schattenfarben**
   static const Color shadowBerry = Color(0xFF9375B6);

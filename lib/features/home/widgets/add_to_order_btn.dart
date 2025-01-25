@@ -26,9 +26,8 @@ class AddToOrderBtn extends StatelessWidget {
       strokeGradient: SnackishGradients.strokeGradient,
       overlayGradient: LinearGradient(
         colors: [
-          Colors.white.withAlpha(
-              (0.1 * 255).toInt()), // Intensiver Schimmer in der Mitte
-          Colors.white.withAlpha((0.01 * 255).toInt()) // Übergang ins Nichts
+          SnackishColors.solidCreamWhite.withAlpha((0.1 * 255).toInt()),
+          SnackishColors.solidCreamWhite.withAlpha((0.01 * 255).toInt())
         ],
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,

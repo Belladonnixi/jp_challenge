@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jp_challenge/features/home/widgets/carousel_recommend_card.dart';
+import 'package:jp_challenge/core/styles/colors.dart';
+import 'package:jp_challenge/data/product.dart';
 import 'package:jp_challenge/features/home/widgets/product_card.dart';
+import 'package:jp_challenge/features/home/widgets/recommend_carousel.dart';
 import 'package:jp_challenge/gen/assets.gen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -22,17 +24,17 @@ class HomeScreen extends StatelessWidget {
             left: 24,
             right: 24,
             child: ProductCard(
-              title: "Angi's Yummy Burger",
-              description: "Delish vegan burger\nthat tastes like heaven",
-              price: "13.99",
-              rating: "4.8",
+              title: 'Angi\'s Yummy Burger',
+              description: 'Delish vegan burger\nthat tastes like heaven',
+              price: '13.99',
+              rating: '4.8',
               image: Assets.images.burger.image(
                 fit: BoxFit.contain,
               ),
               onAddToOrder: () {},
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 530,
             left: 24,
             child: Text(
@@ -40,16 +42,35 @@ class HomeScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 19,
                 fontWeight: FontWeight.w900,
-                color: Colors.white,
+                color: SnackishColors.solidCreamWhite,
                 letterSpacing: -0.5,
               ),
             ),
           ),
           Positioned(
             top: 570,
-            left: 24,
             bottom: 32,
-            child: CarouselRecommendCard(
+            child: RecommendCarousel(
+              products: [
+                Product(
+                  title: 'Mogli\'s Cup',
+                  subtitle: 'Strawberry Cupcake',
+                  description:
+                      'A soft, fluffy cupcake with strawberry frosting and colorful sprinkles. Perfect for any celebration or a moment of indulgence.',
+                  price: '8,99',
+                  image: Assets.images.cupcake2,
+                  ratings: '200',
+                ),
+                Product(
+                  title: 'Balu\'s Cup',
+                  subtitle: 'Pistachio Ice Cream',
+                  description:
+                      'A delightful pistachio ice cream with crunchy toppings and a hint of mint.',
+                  price: '8,99',
+                  image: Assets.images.iceCream3,
+                  ratings: '150',
+                ),
+              ],
               onPressed: () {},
             ),
           ),

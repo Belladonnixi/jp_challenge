@@ -3,9 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:jp_challenge/core/styles/theme.dart';
 import 'package:jp_challenge/features/home/screens/home_screen.dart';
+import 'package:jp_challenge/features/start/screens/start_screen.dart';
 
 void main() async {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  final WidgetsBinding widgetsBinding =
+      WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   await SystemChrome.setPreferredOrientations([
@@ -14,7 +16,7 @@ void main() async {
 
   FlutterNativeSplash.remove();
 
-  runApp(MainApp());
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -26,9 +28,11 @@ class MainApp extends StatelessWidget {
       title: 'Miao Miao',
       debugShowCheckedModeBanner: false,
       theme: buildTheme(),
-      home: HomeScreen(),
-      /*   initialRoute: '/',
-      onGenerateRoute: RouteGenerator.generateRoute, */
+      initialRoute: '/start',
+      routes: {
+        '/start': (context) => const StartScreen(),
+        '/home': (context) => const HomeScreen(),
+      },
     );
   }
 }

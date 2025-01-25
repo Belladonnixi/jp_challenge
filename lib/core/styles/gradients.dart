@@ -3,7 +3,7 @@ import 'package:jp_challenge/core/styles/colors.dart';
 
 abstract class SnackishGradients {
   // **Button-Gradients**
-  static RadialGradient buttonOrderNowGradient = RadialGradient(
+  static RadialGradient buttonOrderNowGradient = const RadialGradient(
     colors: [
       SnackishColors.buttonGradientStart1,
       SnackishColors.buttonGradientEnd1,
@@ -12,7 +12,7 @@ abstract class SnackishGradients {
     radius: 3.5,
   );
 
-  static RadialGradient buttonAddToOrderGradient = RadialGradient(
+  static RadialGradient buttonAddToOrderGradient = const RadialGradient(
     colors: [
       SnackishColors.buttonGradientStart2 /* .withAlpha((0.5 * 255).toInt()) */,
       SnackishColors.buttonGradientEnd2,
@@ -22,7 +22,7 @@ abstract class SnackishGradients {
   );
 
   // **Card View Gradients**
-  static LinearGradient cardViewGlassEffectGradient = LinearGradient(
+  static LinearGradient cardViewGlassEffectGradient = const LinearGradient(
     colors: [
       SnackishColors.overlayWhiteMedium,
       SnackishColors.overlayBlackLow,
@@ -37,8 +37,8 @@ abstract class SnackishGradients {
       SnackishColors.solidGradientLightPurple,
       SnackishColors.solidGradientPurple,
     ],
-    stops: [0.07, 0.61, 1.0],
-    begin: Alignment(0.0, -1.3),
+    stops: const [0.07, 0.61, 1.0],
+    begin: const Alignment(0.0, -1.3),
     end: Alignment.bottomCenter,
   );
 
@@ -48,7 +48,7 @@ abstract class SnackishGradients {
       SnackishColors.overlayBlackLow,
       SnackishColors.transparentWhiteMedium,
     ],
-    stops: [0.0, 1.0],
+    stops: const [0.0, 1.0],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
@@ -59,7 +59,7 @@ abstract class SnackishGradients {
       Colors.transparent,
       SnackishColors.buttonGradientEnd1,
     ],
-    stops: [0.0, 0.6, 1.0],
+    stops: const [0.0, 0.6, 1.0],
     begin: Alignment.topLeft,
     end: Alignment.bottomLeft,
   );

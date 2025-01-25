@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jp_challenge/core/styles/colors.dart';
+import 'package:jp_challenge/data/product.dart';
 import 'package:jp_challenge/features/home/widgets/recommend_card.dart';
 import 'package:jp_challenge/gen/assets.gen.dart';
 
 class CarouselRecommendCard extends StatelessWidget {
   const CarouselRecommendCard({
     super.key,
+    required this.product,
     required this.onPressed,
   });
 
+  final Product product;
   final VoidCallback onPressed;
 
   @override
@@ -22,7 +25,7 @@ class CarouselRecommendCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ClipRRect(
-            child: Assets.images.cupcake2.image(
+            child: product.image.image(
               fit: BoxFit.contain,
               height: 140,
             ),
@@ -35,7 +38,7 @@ class CarouselRecommendCard extends StatelessWidget {
               spacing: 4,
               children: [
                 Text(
-                  'Mogli\'s Cup',
+                  product.title,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -45,7 +48,7 @@ class CarouselRecommendCard extends StatelessWidget {
                   textAlign: TextAlign.left,
                 ),
                 Text(
-                  'Strawberry ice cream',
+                  product.subtitle,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontSize: 14,
                         color: Colors.white70,
@@ -62,12 +65,13 @@ class CarouselRecommendCard extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 Assets.icons.something,
-                colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                 width: 14,
                 height: 14,
               ),
               Text(
-                '8.99',
+                product.price,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -85,7 +89,7 @@ class CarouselRecommendCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 4),
                   Text(
-                    '200',
+                    product.ratings,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: 15,
                           color: SnackishColors.solidCreamWhite

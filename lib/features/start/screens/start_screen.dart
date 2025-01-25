@@ -43,7 +43,9 @@ class StartScreen extends StatelessWidget {
             left: 24,
             right: 24,
             child: StartCard(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed('/home');
+              },
             ),
           ),
         ],

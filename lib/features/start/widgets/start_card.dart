@@ -19,7 +19,7 @@ class StartCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             'Feeling Snackish Today?',
             style: TextStyle(
               fontSize: 23,
@@ -34,7 +34,8 @@ class StartCard extends StatelessWidget {
             'Explore Angi\'s most popular snack selection\nand get instantly happy.',
             style: TextStyle(
               fontSize: 12,
-              color: Colors.white70,
+              color:
+                  SnackishColors.solidCreamWhite.withAlpha((0.7 * 255).toInt()),
             ),
             textAlign: TextAlign.center,
           ),

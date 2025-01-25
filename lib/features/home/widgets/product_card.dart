@@ -81,7 +81,7 @@ class ProductCard extends StatelessWidget {
                   SvgPicture.asset(
                     Assets.icons.something,
                     colorFilter:
-                        ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                        const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                     width: 16,
                     height: 16,
                   ),
@@ -98,10 +98,10 @@ class ProductCard extends StatelessWidget {
               const Spacer(),
               // Button
               AddToOrderBtn(
-                title: Text(
+                title: const Text(
                   'Add to order',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: SnackishColors.solidCreamWhite,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     letterSpacing: -0.5,

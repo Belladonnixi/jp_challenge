@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:jp_challenge/data/product.dart';
+import 'package:jp_challenge/features/details/screens/details_bottom_sheet.dart';
 import 'package:jp_challenge/features/home/widgets/carousel_recommend_card.dart';
 
 class RecommendCarousel extends StatelessWidget {
   const RecommendCarousel({
     super.key,
     required this.products,
-    required this.onPressed,
   });
 
   final List<Product> products;
-  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,26 @@ class RecommendCarousel extends StatelessWidget {
               padding: const EdgeInsets.only(right: 16.0),
               child: CarouselRecommendCard(
                 product: product,
-                onPressed: onPressed,
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (BuildContext context) {
+                      return FractionallySizedBox(
+                        heightFactor: 0.82,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            ),
+                          ),
+                          child: DetailsBottomSheet(product: product),
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
             );
           },

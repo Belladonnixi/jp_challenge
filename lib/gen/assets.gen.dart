@@ -32,61 +32,29 @@ class $AssetsBackgroundsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  /// File path: assets/icons/cancel.svg
-  String get cancel => 'assets/icons/cancel.svg';
+  /// File path: assets/icons/gluten_free.png
+  AssetGenImage get glutenFree =>
+      const AssetGenImage('assets/icons/gluten_free.png');
 
-  /// File path: assets/icons/gluten_free.svg
-  String get glutenFree => 'assets/icons/gluten_free.svg';
+  /// File path: assets/icons/kcal.png
+  AssetGenImage get kcal => const AssetGenImage('assets/icons/kcal.png');
 
-  /// File path: assets/icons/heart.svg
-  String get heart => 'assets/icons/heart.svg';
+  /// File path: assets/icons/low_fat.png
+  AssetGenImage get lowFat => const AssetGenImage('assets/icons/low_fat.png');
 
-  /// File path: assets/icons/heart_filled.svg
-  String get heartFilled => 'assets/icons/heart_filled.svg';
-
-  /// File path: assets/icons/kcal.svg
-  String get kcal => 'assets/icons/kcal.svg';
-
-  /// File path: assets/icons/low_fat.svg
-  String get lowFat => 'assets/icons/low_fat.svg';
-
-  /// File path: assets/icons/lunch.svg
-  String get lunch => 'assets/icons/lunch.svg';
-
-  /// File path: assets/icons/minus.svg
-  String get minus => 'assets/icons/minus.svg';
-
-  /// File path: assets/icons/plus.svg
-  String get plus => 'assets/icons/plus.svg';
+  /// File path: assets/icons/lunch.png
+  AssetGenImage get lunch => const AssetGenImage('assets/icons/lunch.png');
 
   /// File path: assets/icons/something.svg
   String get something => 'assets/icons/something.svg';
 
-  /// File path: assets/icons/star.svg
-  String get star => 'assets/icons/star.svg';
-
-  /// File path: assets/icons/star_filled.svg
-  String get starFilled => 'assets/icons/star_filled.svg';
-
-  /// File path: assets/icons/sugar_free.svg
-  String get sugarFree => 'assets/icons/sugar_free.svg';
+  /// File path: assets/icons/sugar_free.png
+  AssetGenImage get sugarFree =>
+      const AssetGenImage('assets/icons/sugar_free.png');
 
   /// List of all assets
-  List<String> get values => [
-        cancel,
-        glutenFree,
-        heart,
-        heartFilled,
-        kcal,
-        lowFat,
-        lunch,
-        minus,
-        plus,
-        something,
-        star,
-        starFilled,
-        sugarFree
-      ];
+  List<dynamic> get values =>
+      [glutenFree, kcal, lowFat, lunch, something, sugarFree];
 }
 
 class $AssetsImagesGen {

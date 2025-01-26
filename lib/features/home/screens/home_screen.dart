@@ -32,16 +32,6 @@ class HomeScreen extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
               onAddToOrder: () {},
-              onTapped: () {
-                showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Container(
-                        height: 300,
-                        color: Colors.white,
-                      );
-                    });
-              },
             ),
           ),
           const Positioned(
@@ -62,16 +52,6 @@ class HomeScreen extends StatelessWidget {
             bottom: 32,
             child: RecommendCarousel(
               products: products,
-              onPressed: () {
-                showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Container(
-                        height: 300,
-                        color: Colors.white,
-                      );
-                    });
-              },
             ),
           ),
         ],

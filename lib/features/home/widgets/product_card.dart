@@ -14,7 +14,6 @@ class ProductCard extends StatelessWidget {
     required this.rating,
     required this.image,
     required this.onAddToOrder,
-    required this.onTapped,
   });
 
   final String title;
@@ -23,12 +22,11 @@ class ProductCard extends StatelessWidget {
   final String rating;
   final Widget image;
   final VoidCallback onAddToOrder;
-  final VoidCallback onTapped;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTapped,
+      onTap: () {},
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -86,8 +84,8 @@ class ProductCard extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       Assets.icons.something,
-                      colorFilter:
-                          const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                      colorFilter: const ColorFilter.mode(
+                          SnackishColors.solidCreamWhite, BlendMode.srcIn),
                       width: 16,
                       height: 16,
                     ),
@@ -96,7 +94,7 @@ class ProductCard extends StatelessWidget {
                       style:
                           Theme.of(context).textTheme.headlineSmall?.copyWith(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: SnackishColors.solidCreamWhite,
                                 fontSize: 16,
                               ),
                     ),

@@ -9,16 +9,21 @@ class OrderBtn extends StatelessWidget {
     required this.title,
     required this.onPressed,
     this.padding = const EdgeInsets.symmetric(horizontal: 32),
+    this.height,
+    this.width,
   });
 
   final Widget title;
   final VoidCallback onPressed;
   final EdgeInsetsGeometry? padding;
+  final double? height;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return GradientBtn(
       title: title,
+      width: width,
       onPressed: onPressed,
       height: 48,
       padding: padding,

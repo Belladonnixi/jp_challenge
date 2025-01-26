@@ -25,7 +25,7 @@ class RecommendCard extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(30.0),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 45.0, sigmaY: 45.0),
           child: Container(

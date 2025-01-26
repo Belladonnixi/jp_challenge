@@ -54,6 +54,7 @@ class CarouselRecommendCard extends StatelessWidget {
                         color: Colors.white70,
                       ),
                   textAlign: TextAlign.left,
+                  maxLines: 1,
                 ),
               ],
             ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jp_challenge/core/styles/colors.dart';
-import 'package:jp_challenge/data/product.dart';
+import 'package:jp_challenge/data/product_repo.dart';
 import 'package:jp_challenge/features/home/widgets/product_card.dart';
 import 'package:jp_challenge/features/home/widgets/recommend_carousel.dart';
 import 'package:jp_challenge/gen/assets.gen.dart';
@@ -32,6 +32,16 @@ class HomeScreen extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
               onAddToOrder: () {},
+              onTapped: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        height: 300,
+                        color: Colors.white,
+                      );
+                    });
+              },
             ),
           ),
           const Positioned(
@@ -51,27 +61,17 @@ class HomeScreen extends StatelessWidget {
             top: 570,
             bottom: 32,
             child: RecommendCarousel(
-              products: [
-                Product(
-                  title: 'Mogli\'s Cup',
-                  subtitle: 'Strawberry Cupcake',
-                  description:
-                      'A soft, fluffy cupcake with strawberry frosting and colorful sprinkles. Perfect for any celebration or a moment of indulgence.',
-                  price: '8,99',
-                  image: Assets.images.cupcake2,
-                  ratings: '200',
-                ),
-                Product(
-                  title: 'Balu\'s Cup',
-                  subtitle: 'Pistachio Ice Cream',
-                  description:
-                      'A delightful pistachio ice cream with crunchy toppings and a hint of mint.',
-                  price: '8,99',
-                  image: Assets.images.iceCream3,
-                  ratings: '150',
-                ),
-              ],
-              onPressed: () {},
+              products: products,
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        height: 300,
+                        color: Colors.white,
+                      );
+                    });
+              },
             ),
           ),
         ],

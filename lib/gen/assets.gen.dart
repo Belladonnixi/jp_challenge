@@ -12,6 +12,10 @@ import 'package:flutter/widgets.dart';
 class $AssetsBackgroundsGen {
   const $AssetsBackgroundsGen();
 
+  /// File path: assets/backgrounds/bg_bottomsheet.png
+  AssetGenImage get bgBottomsheet =>
+      const AssetGenImage('assets/backgrounds/bg_bottomsheet.png');
+
   /// File path: assets/backgrounds/bg_mainscreen.png
   AssetGenImage get bgMainscreen =>
       const AssetGenImage('assets/backgrounds/bg_mainscreen.png');
@@ -21,7 +25,8 @@ class $AssetsBackgroundsGen {
       const AssetGenImage('assets/backgrounds/bg_startscreen.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [bgMainscreen, bgStartscreen];
+  List<AssetGenImage> get values =>
+      [bgBottomsheet, bgMainscreen, bgStartscreen];
 }
 
 class $AssetsIconsGen {
@@ -110,13 +115,24 @@ class $AssetsImagesGen {
   AssetGenImage get iceCream3 =>
       const AssetGenImage('assets/images/ice_cream_3.png');
 
+  /// File path: assets/images/sadHam.png
+  AssetGenImage get sadHam => const AssetGenImage('assets/images/sadHam.png');
+
   /// File path: assets/images/snack_snack.png
   AssetGenImage get snackSnack =>
       const AssetGenImage('assets/images/snack_snack.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [burger, cupcake1, cupcake2, iceCream1, iceCream2, iceCream3, snackSnack];
+  List<AssetGenImage> get values => [
+        burger,
+        cupcake1,
+        cupcake2,
+        iceCream1,
+        iceCream2,
+        iceCream3,
+        sadHam,
+        snackSnack
+      ];
 }
 
 class Assets {

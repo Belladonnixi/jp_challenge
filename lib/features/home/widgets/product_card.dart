@@ -14,6 +14,7 @@ class ProductCard extends StatelessWidget {
     required this.rating,
     required this.image,
     required this.onAddToOrder,
+    required this.onPressed,
   });
 
   final String title;
@@ -22,11 +23,12 @@ class ProductCard extends StatelessWidget {
   final String rating;
   final Widget image;
   final VoidCallback onAddToOrder;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onPressed,
       child: Stack(
         clipBehavior: Clip.none,
         children: [

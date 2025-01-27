@@ -16,6 +16,34 @@ class DetailsBottomSheet extends StatelessWidget {
 
   final Product product;
 
+  Widget _buildIconButton({
+    required IconData icon,
+    required VoidCallback onPressed,
+  }) {
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        height: 32,
+        width: 32,
+        decoration: BoxDecoration(
+          color: SnackishColors.solidDarkChocolate,
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: Colors.grey[600]!,
+            width: 1.5,
+          ),
+        ),
+        child: Center(
+          child: Icon(
+            icon,
+            size: 20,
+            color: SnackishColors.solidCreamWhite,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -106,6 +134,15 @@ class DetailsBottomSheet extends StatelessWidget {
           left: 24,
           right: 24,
           child: DetailsCard(product: product),
+        ),
+        Positioned(
+          top: 16,
+          right: 16,
+          child: _buildIconButton(
+              icon: Icons.close,
+              onPressed: () {
+                Navigator.of(context).pop();
+              }),
         ),
       ],
     );

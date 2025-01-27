@@ -33,7 +33,7 @@ class GlassCard extends StatelessWidget {
             border: Border.all(
               color:
                   SnackishColors.solidCreamWhite.withAlpha((0.3 * 255).toInt()),
-              width: 0.7,
+              width: 1,
             ),
           ),
           child: child,

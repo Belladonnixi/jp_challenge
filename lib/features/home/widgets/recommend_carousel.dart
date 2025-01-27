@@ -35,15 +35,7 @@ class RecommendCarousel extends StatelessWidget {
                     builder: (BuildContext context) {
                       return FractionallySizedBox(
                         heightFactor: 0.82,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                            ),
-                          ),
-                          child: DetailsBottomSheet(product: product),
-                        ),
+                        child: DetailsBottomSheet(product: product),
                       );
                     },
                   );

@@ -84,16 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         builder: (BuildContext context) {
                           return FractionallySizedBox(
                             heightFactor: 0.82,
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20),
-                                ),
-                              ),
-                              child:
-                                  DetailsBottomSheet(product: filteredProduct),
-                            ),
+                            child: DetailsBottomSheet(product: filteredProduct),
                           );
                         },
                       );

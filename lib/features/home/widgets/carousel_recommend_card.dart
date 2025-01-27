@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jp_challenge/core/styles/colors.dart';
-import 'package:jp_challenge/data/product.dart';
+import 'package:jp_challenge/data/repositories/product.dart';
 import 'package:jp_challenge/features/home/widgets/recommend_card.dart';
 import 'package:jp_challenge/gen/assets.gen.dart';
 

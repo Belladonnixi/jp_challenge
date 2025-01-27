@@ -1,4 +1,4 @@
-import 'package:jp_challenge/data/product.dart';
+import 'package:jp_challenge/data/repositories/product.dart';
 import 'package:jp_challenge/gen/assets.gen.dart';
 
 final List<Product> products = [

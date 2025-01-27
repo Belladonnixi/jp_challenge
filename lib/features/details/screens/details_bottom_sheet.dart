@@ -4,7 +4,7 @@ import 'package:jp_challenge/core/widgets/order_btn.dart';
 import 'package:jp_challenge/features/details/widgets/details_card.dart';
 import '../widgets/product_counter.dart';
 import 'package:flutter/material.dart';
-import 'package:jp_challenge/data/product.dart';
+import 'package:jp_challenge/data/repositories/product.dart';
 import 'package:jp_challenge/features/details/widgets/size_selector.dart';
 import 'package:jp_challenge/gen/assets.gen.dart';
 

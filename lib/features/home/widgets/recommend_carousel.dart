@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jp_challenge/data/product.dart';
+import 'package:jp_challenge/data/repositories/product.dart';
 import 'package:jp_challenge/features/details/screens/details_bottom_sheet.dart';
 import 'package:jp_challenge/features/home/widgets/carousel_recommend_card.dart';
 
